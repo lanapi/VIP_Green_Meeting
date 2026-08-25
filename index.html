@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -990,6 +991,141 @@
   .nav-icon-naver { background: #03C75A; color: #fff; font-weight: 700; font-size: 10px; letter-spacing: -.02em; }
   .nav-icon-kakao  { background: #FEE500; color: #3C1E1E; font-size: 11px; }
 
+  /* ── 라운딩 조 편성 카드 ── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 860px) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) { .team-grid { grid-template-columns: 1fr; } }
+
+  .team-card {
+    background: var(--warm-wh);
+    border: 1px solid var(--gold-dim);
+    border-radius: 10px;
+    padding: 16px 16px 14px;
+    box-shadow: 0 2px 10px rgba(26,51,37,.06);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .team-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(26,51,37,.1); }
+
+  .team-card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .team-card-letter {
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--forest);
+    letter-spacing: .02em;
+  }
+  .team-card-letter span {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--mid);
+    margin-left: 4px;
+  }
+  .team-card-course { text-align: right; }
+  .team-card-course-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: var(--gold);
+  }
+  .team-card-course-time {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+
+  .team-card-rule {
+    height: 1px;
+    background: var(--gold-dim);
+    margin-bottom: 10px;
+  }
+
+  .team-member {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 0;
+  }
+  .team-member + .team-member { border-top: 1px dashed rgba(184,154,90,.18); }
+  .team-member-name {
+    font-size: 13.5px;
+    color: var(--charcoal);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .team-member-name b { font-weight: 600; }
+  .team-member-name small { color: var(--mid); font-weight: 400; margin-left: 3px; font-size: 12px; }
+
+  .team-badge {
+    flex-shrink: 0;
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+    background: rgba(90,90,90,.07);
+    color: var(--mid);
+    font-weight: 500;
+  }
+  .team-badge.vendor {
+    background: rgba(184,154,90,.12);
+    border: 1px solid rgba(184,154,90,.45);
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* ── 하단 요약 바 ── */
+  .team-summary {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr 1fr 1fr;
+    gap: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--gold-dim);
+    margin-top: 18px;
+  }
+  @media (max-width: 700px) { .team-summary { grid-template-columns: repeat(3, 1fr); } }
+  .team-summary-cell {
+    background: var(--warm-wh);
+    padding: 16px 10px;
+    text-align: center;
+    border-right: 1px solid var(--gold-dim);
+  }
+  .team-summary-cell:last-child { border-right: none; }
+  .team-summary-cell.total {
+    background: var(--forest);
+    color: var(--gold-lt);
+  }
+  .team-summary-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    margin-bottom: 6px;
+  }
+  .team-summary-cell.total .team-summary-label { color: rgba(212,185,122,.85); }
+  .team-summary-cell:not(.total) .team-summary-label { color: var(--mid); }
+  .team-summary-value {
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .team-summary-cell.total .team-summary-value { color: var(--gold-lt); }
+  .team-summary-cell:not(.total) .team-summary-value { color: var(--forest); }
+  .team-summary-sub {
+    font-size: 11px;
+    color: var(--mid);
+    margin-top: 3px;
+  }
+
 </style>
 </head>
 <body>
@@ -1136,7 +1272,7 @@
       <div class="tl-time">13:11 ~</div>
       <div class="tl-dot"></div>
       <div class="tl-content"><div class="title">각 조별 라운딩</div>
-      <div class="tl-sub"><span class="tl-sub-pointer">▸</span>동IN코스 3팀 · 동OUT코스 3팀</div></div>
+      <div class="tl-sub"><span class="tl-sub-pointer">▸</span>동IN코스 4팀(A~D) · 동OUT코스 4팀(E~H)</div></div>
     </div>
     <div class="tl-row" data-reveal data-delay="5">
       <div class="tl-time">라운딩 후</div>
@@ -1209,36 +1345,136 @@
     </table>
   </div>
 
-  <div data-reveal data-delay="5" style="max-width:680px; margin: clamp(24px,4vw,36px) auto 0; overflow-x:auto;">
-    <table style="
-      width:100%;
-      border-collapse:collapse;
-      font-family:'Noto Sans KR',sans-serif;
-      font-size:clamp(12px,1.9vw,14px);
-      color:var(--charcoal);
-      table-layout:fixed;
-    ">
-      <colgroup>
-        <col style="width:34%;">
-        <col style="width:33%;">
-        <col style="width:33%;">
-      </colgroup>
-      <thead>
-        <tr>
-          <th style="background:var(--forest);color:var(--gold-lt);font-family:'Noto Serif KR',serif;font-weight:600;letter-spacing:.08em;padding:12px 8px;text-align:center;border:1px solid rgba(184,154,90,.3);">참여사</th>
-          <th style="background:var(--forest);color:var(--gold-lt);font-family:'Noto Serif KR',serif;font-weight:600;letter-spacing:.08em;padding:12px 8px;text-align:center;border:1px solid rgba(184,154,90,.3);">담당</th>
-          <th style="background:var(--forest);color:var(--gold-lt);font-family:'Noto Serif KR',serif;font-weight:600;letter-spacing:.08em;padding:12px 8px;text-align:center;border:1px solid rgba(184,154,90,.3);">참석인원</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td style="padding:9px 12px;border:1px solid rgba(184,154,90,.2);text-align:center;color:var(--mid);">증권사 회장단</td><td style="padding:9px 12px;border:1px solid rgba(184,154,90,.2);text-align:center;color:var(--mid);">－</td><td style="padding:9px 8px;border:1px solid rgba(184,154,90,.2);text-align:center;color:var(--forest);font-weight:600;">17명</td></tr>
-        <tr><td style="padding:9px 12px;border:1px solid rgba(184,154,90,.2);color:var(--moss);font-weight:600;text-align:center;">인젠트</td><td style="padding:9px 12px;border:1px solid rgba(184,154,90,.2);text-align:center;color:var(--mid);">차용규 부사장</td><td style="padding:9px 8px;border:1px solid rgba(184,154,90,.2);text-align:center;color:var(--forest);font-weight:600;">6명</td></tr>
-        <tr><td style="padding:9px 12px;border:1px solid rgba(184,154,90,.2);color:var(--moss);font-weight:600;text-align:center;">에임투지</td><td style="padding:9px 12px;border:1px solid rgba(184,154,90,.2);text-align:center;color:var(--mid);">김학진 팀장</td><td style="padding:9px 8px;border:1px solid rgba(184,154,90,.2);text-align:center;color:var(--forest);font-weight:600;">6명</td></tr>
-        <tr><td style="padding:9px 12px;border:1px solid rgba(184,154,90,.2);color:var(--moss);font-weight:600;text-align:center;">솔라스</td><td style="padding:9px 12px;border:1px solid rgba(184,154,90,.2);text-align:center;color:var(--mid);">윤은숙 지사장</td><td style="padding:9px 8px;border:1px solid rgba(184,154,90,.2);text-align:center;color:var(--forest);font-weight:600;">3명</td></tr>
-        <tr><td style="padding:10px 12px;border:1px solid rgba(184,154,90,.2);text-align:center;color:var(--forest);font-weight:700;background:rgba(26,51,37,.06);">소계</td><td style="padding:10px 12px;border:1px solid rgba(184,154,90,.2);text-align:center;background:rgba(26,51,37,.06);">－</td><td style="padding:10px 8px;border:1px solid rgba(184,154,90,.2);text-align:center;color:var(--forest);font-weight:700;background:rgba(26,51,37,.06);">32명 · 8팀</td></tr>
-      </tbody>
-    </table>
-    <p style="max-width:680px; margin:12px auto 0; text-align:right; font-size:11px; color:var(--mid);">※ 고객사 라운딩 인원 추가 시 인젠트·에임투지 참석 인원이 조정될 수 있습니다.</p>
+  <div data-reveal data-delay="6" style="max-width:980px; margin: clamp(40px,6vw,64px) auto 0;">
+    <div style="text-align:center; font-family:'Noto Serif KR',serif; font-weight:600; letter-spacing:.08em; color:var(--forest); font-size:clamp(15px,2.2vw,18px); margin-bottom:20px;">라운딩 조 편성 (4인 1조 · 8팀)</div>
+
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-card-head">
+          <div class="team-card-letter">A<span>조</span></div>
+          <div class="team-card-course"><div class="team-card-course-label">동 IN</div><div class="team-card-course-time">13:11</div></div>
+        </div>
+        <div class="team-card-rule"></div>
+        <div class="team-member"><div class="team-member-name"><b>강용원</b><small>상무</small></div><div class="team-badge">IBK투자증권</div></div>
+        <div class="team-member"><div class="team-member-name"><b>박기춘</b><small>상무</small></div><div class="team-badge">NH투자증권</div></div>
+        <div class="team-member"><div class="team-member-name"><b>차용규</b><small>부사장</small></div><div class="team-badge vendor">인젠트</div></div>
+        <div class="team-member"><div class="team-member-name"><b>김학진</b><small>팀장</small></div><div class="team-badge vendor">에임투지</div></div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-head">
+          <div class="team-card-letter">B<span>조</span></div>
+          <div class="team-card-course"><div class="team-card-course-label">동 IN</div><div class="team-card-course-time">13:18</div></div>
+        </div>
+        <div class="team-card-rule"></div>
+        <div class="team-member"><div class="team-member-name"><b>김경주</b><small>상무</small></div><div class="team-badge">키움증권</div></div>
+        <div class="team-member"><div class="team-member-name"><b>박정우</b><small>상무</small></div><div class="team-badge">LS증권</div></div>
+        <div class="team-member"><div class="team-member-name">성명 미정<small>임직원</small></div><div class="team-badge vendor">인젠트</div></div>
+        <div class="team-member"><div class="team-member-name">성명 미정<small>임직원</small></div><div class="team-badge vendor">에임투지</div></div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-head">
+          <div class="team-card-letter">C<span>조</span></div>
+          <div class="team-card-course"><div class="team-card-course-label">동 IN</div><div class="team-card-course-time">13:25</div></div>
+        </div>
+        <div class="team-card-rule"></div>
+        <div class="team-member"><div class="team-member-name"><b>오임권</b><small>상무</small></div><div class="team-badge">다올투자증권</div></div>
+        <div class="team-member"><div class="team-member-name"><b>원창선</b><small>상무</small></div><div class="team-badge">신영증권</div></div>
+        <div class="team-member"><div class="team-member-name">성명 미정<small>임직원</small></div><div class="team-badge vendor">인젠트</div></div>
+        <div class="team-member"><div class="team-member-name">성명 미정<small>임직원</small></div><div class="team-badge vendor">에임투지</div></div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-head">
+          <div class="team-card-letter">D<span>조</span></div>
+          <div class="team-card-course"><div class="team-card-course-label">동 IN</div><div class="team-card-course-time">13:32</div></div>
+        </div>
+        <div class="team-card-rule"></div>
+        <div class="team-member"><div class="team-member-name"><b>이동윤</b><small>상무</small></div><div class="team-badge">KB증권</div></div>
+        <div class="team-member"><div class="team-member-name"><b>이재성</b><small>본부장</small></div><div class="team-badge">DB증권</div></div>
+        <div class="team-member"><div class="team-member-name">성명 미정<small>임직원</small></div><div class="team-badge vendor">인젠트</div></div>
+        <div class="team-member"><div class="team-member-name">성명 미정<small>임직원</small></div><div class="team-badge vendor">에임투지</div></div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-head">
+          <div class="team-card-letter">E<span>조</span></div>
+          <div class="team-card-course"><div class="team-card-course-label">동 OUT</div><div class="team-card-course-time">13:11</div></div>
+        </div>
+        <div class="team-card-rule"></div>
+        <div class="team-member"><div class="team-member-name"><b>장립</b><small>CTO</small></div><div class="team-badge">카카오페이증권</div></div>
+        <div class="team-member"><div class="team-member-name"><b>장준수</b><small>본부장</small></div><div class="team-badge">교보증권</div></div>
+        <div class="team-member"><div class="team-member-name">성명 미정<small>임직원</small></div><div class="team-badge vendor">인젠트</div></div>
+        <div class="team-member"><div class="team-member-name">성명 미정<small>임직원</small></div><div class="team-badge vendor">에임투지</div></div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-head">
+          <div class="team-card-letter">F<span>조</span></div>
+          <div class="team-card-course"><div class="team-card-course-label">동 OUT</div><div class="team-card-course-time">13:18</div></div>
+        </div>
+        <div class="team-card-rule"></div>
+        <div class="team-member"><div class="team-member-name"><b>조은아</b><small>상무</small></div><div class="team-badge">SK증권</div></div>
+        <div class="team-member"><div class="team-member-name"><b>김세영</b><small>본부장</small></div><div class="team-badge">유안타증권</div></div>
+        <div class="team-member"><div class="team-member-name">성명 미정<small>임직원</small></div><div class="team-badge vendor">인젠트</div></div>
+        <div class="team-member"><div class="team-member-name">성명 미정<small>임직원</small></div><div class="team-badge vendor">에임투지</div></div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-head">
+          <div class="team-card-letter">G<span>조</span></div>
+          <div class="team-card-course"><div class="team-card-course-label">동 OUT</div><div class="team-card-course-time">13:25</div></div>
+        </div>
+        <div class="team-card-rule"></div>
+        <div class="team-member"><div class="team-member-name"><b>이희성</b><small>상무</small></div><div class="team-badge">한국투자증권</div></div>
+        <div class="team-member"><div class="team-member-name"><b>심무경</b><small>본부장</small></div><div class="team-badge">코스콤</div></div>
+        <div class="team-member"><div class="team-member-name"><b>윤은숙</b><small>지사장</small></div><div class="team-badge vendor">솔라스</div></div>
+        <div class="team-member"><div class="team-member-name">성명 미정<small>임직원</small></div><div class="team-badge vendor">솔라스</div></div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-head">
+          <div class="team-card-letter">H<span>조</span></div>
+          <div class="team-card-course"><div class="team-card-course-label">동 OUT</div><div class="team-card-course-time">13:32</div></div>
+        </div>
+        <div class="team-card-rule"></div>
+        <div class="team-member"><div class="team-member-name"><b>김종흔</b><small>본부장</small></div><div class="team-badge">넥스트레이드</div></div>
+        <div class="team-member"><div class="team-member-name"><b>정진호</b><small>본부장</small></div><div class="team-badge">KDX</div></div>
+        <div class="team-member"><div class="team-member-name"><b>장영훈</b><small>부장</small></div><div class="team-badge">금융투자협회</div></div>
+        <div class="team-member"><div class="team-member-name">성명 미정<small>임직원</small></div><div class="team-badge vendor">솔라스</div></div>
+      </div>
+
+    </div>
+
+    <div class="team-summary">
+      <div class="team-summary-cell total">
+        <div class="team-summary-label">TOTAL</div>
+        <div class="team-summary-value">32명 · 8팀</div>
+      </div>
+      <div class="team-summary-cell">
+        <div class="team-summary-label">증권사 회장단</div>
+        <div class="team-summary-value">17명</div>
+      </div>
+      <div class="team-summary-cell">
+        <div class="team-summary-label">인젠트</div>
+        <div class="team-summary-value">6명</div>
+        <div class="team-summary-sub">차용규 부사장</div>
+      </div>
+      <div class="team-summary-cell">
+        <div class="team-summary-label">에임투지</div>
+        <div class="team-summary-value">6명</div>
+        <div class="team-summary-sub">김학진 팀장</div>
+      </div>
+      <div class="team-summary-cell">
+        <div class="team-summary-label">솔라스</div>
+        <div class="team-summary-value">3명</div>
+        <div class="team-summary-sub">윤은숙 지사장</div>
+      </div>
+    </div>
+
+    <p style="max-width:980px; margin:14px auto 0; text-align:right; font-size:11px; color:var(--mid);">※ 고객사 라운딩 인원 추가 시 인젠트·에임투지 참석 인원 및 조 편성이 조정될 수 있습니다.</p>
   </div>
 </section>
 
