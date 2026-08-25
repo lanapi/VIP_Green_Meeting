@@ -2,6 +2,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -205,7 +206,9 @@
     border-radius: 4px;
     padding: clamp(12px,2vw,16px) clamp(16px,3vw,24px);
     backdrop-filter: blur(4px);
-    min-width: 0;
+    width: clamp(220px,26vw,300px);
+    justify-content: center;
+    text-align: center;
     transition: background .25s, border-color .25s, transform .25s;
   }
   .meta-item:hover {
@@ -570,8 +573,8 @@
      RESPONSIVE
   ════════════════════════════ */
   @media (max-width: 768px) {
-    .hero-meta { flex-direction: column; align-items: stretch; gap: 12px; width: 100%; max-width: 340px; }
-    .meta-item { justify-content: center; }
+    .hero-meta { flex-direction: column; align-items: center; gap: 12px; width: 100%; max-width: 340px; }
+    .meta-item { justify-content: center; width: 100%; max-width: 300px; margin: 0 auto; }
     .dir-grid  { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 480px) {
@@ -1117,33 +1120,49 @@
 
   <div class="timeline" id="timeline">
     <div class="tl-row" data-reveal data-delay="1">
-      <div class="tl-time">10:00</div>
+      <div class="tl-time">~ 11:00</div>
       <div class="tl-dot"></div>
-      <div class="tl-content"><div class="title">도착</div></div>
+      <div class="tl-content"><div class="title">행사장 도착</div></div>
     </div>
     <div class="tl-row" data-reveal data-delay="2">
-      <div class="tl-time">10:30 – 11:30</div>
+      <div class="tl-time">11:00 – 11:20</div>
       <div class="tl-dot"></div>
-      <div class="tl-content"><div class="title">세미나 진행</div>
-      <div class="tl-sub"><span class="tl-sub-pointer">▸</span>인젠트 - 차세대증권시스템 데이터플랫폼 소개(eXperDB), PaaS Interface 전략 소개</div>
-      <div class="tl-sub"><span class="tl-sub-pointer">▸</span>에임투지 - 세션 발표</div>
-      <div class="tl-sub"><span class="tl-sub-pointer">▸</span>솔라스 - 세션 발표</div></div>
+      <div class="tl-content"><div class="title">의관 정비</div></div>
     </div>
     <div class="tl-row" data-reveal data-delay="3">
-      <div class="tl-time">11:30 – 12:30</div>
+      <div class="tl-time">11:20 – 12:05</div>
       <div class="tl-dot"></div>
-      <div class="tl-content"><div class="title">중식</div></div>
+      <div class="tl-content"><div class="title">세미나</div></div>
     </div>
     <div class="tl-row" data-reveal data-delay="4">
-      <div class="tl-time">13:11 ~</div>
+      <div class="tl-time">12:05 – 12:45</div>
       <div class="tl-dot"></div>
-      <div class="tl-content"><div class="title">각 조별 라운딩</div>
-      <div class="tl-sub"><span class="tl-sub-pointer">▸</span>동IN코스 3팀 · 동OUT코스 3팀</div></div>
+      <div class="tl-content"><div class="title">오찬</div></div>
     </div>
     <div class="tl-row" data-reveal data-delay="5">
-      <div class="tl-time">라운딩 후</div>
+      <div class="tl-time">12:45 – 13:00</div>
       <div class="tl-dot"></div>
-      <div class="tl-content"><div class="title">클럽 만찬</div></div>
+      <div class="tl-content"><div class="title">기념 촬영</div></div>
+    </div>
+    <div class="tl-row" data-reveal data-delay="6">
+      <div class="tl-time">13:11 – 18:00</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content"><div class="title">체육 행사</div></div>
+    </div>
+    <div class="tl-row" data-reveal data-delay="7">
+      <div class="tl-time">18:00 – 18:20</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content"><div class="title">의관 정비</div></div>
+    </div>
+    <div class="tl-row" data-reveal data-delay="8">
+      <div class="tl-time">18:20 – 20:00</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content"><div class="title">만찬</div></div>
+    </div>
+    <div class="tl-row" data-reveal data-delay="9">
+      <div class="tl-time">20:00 ~</div>
+      <div class="tl-dot"></div>
+      <div class="tl-content"><div class="title">귀가</div></div>
     </div>
   </div>
   <p style="max-width:800px; margin:16px auto 0; text-align:right; font-size:11px; color:var(--mid);">※ 상기 내용은 현장 상황에 따라 변경될 수 있습니다.</p>
