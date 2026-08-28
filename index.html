@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -471,7 +478,7 @@
   .tl-time {
     width: var(--tl-w, 148px);
     padding-right: 28px;
-    text-align: right;
+    text-align: left;
     flex-shrink: 0;
     font-family: 'Noto Serif KR', serif;
     font-size: clamp(13px,1.9vw,16.5px);
@@ -498,13 +505,29 @@
     flex: 1;
     margin-left: 20px;
     text-align: left;
-    font-size: clamp(18px,2.4vw,20.5px);
+    font-size: clamp(16px,2.4vw,20.5px);
     color: var(--charcoal);
   }
   .tl-content .title { font-weight: 500; margin-bottom: 8px; }
+  .tl-content .title .tl-room { font-size: .68em; font-weight: 400; color: var(--mid); }
   .tl-content .note  { font-size: 15.5px; color: var(--mid); }
-  .tl-sub { font-size: clamp(14px,1.8vw,15.5px); color: var(--mid); margin: 5px 0; display: flex; align-items: flex-start; gap: 8px; text-align: left; }
-  .tl-sub-pointer { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .tl-sub {
+    position: relative;
+    font-size: clamp(12.5px,1.8vw,15.5px);
+    line-height: 1.6;
+    color: var(--mid);
+    margin: 6px 0 6px 15px;
+    text-align: left;
+    word-break: keep-all;
+  }
+  .tl-sub::before {
+    content: '•';
+    position: absolute;
+    left: -15px; top: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .tl-sub-co { color: var(--sage); white-space: nowrap; }
 
   /* ════════════════════════════
      DIRECTIONS
@@ -588,12 +611,20 @@
     .hero { padding-bottom: clamp(80px,18vw,110px); }
     .timeline { --tl-w: 98px; }
     .tl-time  { width: 98px; padding-right: 12px; font-size: 13px; }
+    .tl-content { margin-left: 14px; font-size: 15px; }
+    .tl-content .title { font-size: 16px; margin-bottom: 6px; }
+    .tl-content .title .tl-room { display: block; font-size: 12px; margin-top: 2px; }
+    .tl-sub { font-size: 12px; margin: 5px 0 5px 13px; }
+    .tl-sub::before { left: -13px; }
     .dir-grid { grid-template-columns: 1fr; }
     .invitation-body { font-size: 14px; }
   }
   @media (max-width: 360px) {
     .timeline { --tl-w: 84px; }
     .tl-time  { width: 84px; font-size: 11.5px; padding-right: 8px; }
+    .tl-content { font-size: 14px; }
+    .tl-content .title { font-size: 15px; }
+    .tl-sub { font-size: 11.5px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -1140,10 +1171,10 @@
       <div class="tl-time">11:20 – 12:05</div>
       <div class="tl-dot"></div>
       <div class="tl-content">
-        <div class="title">세미나 <span style="font-size:14px; font-weight:400; color:var(--mid);">(세미나실 4~5호실)</span></div>
-        <div class="tl-sub"><span class="tl-sub-pointer">•</span> 혁신과 안정성, eXperDB TCO 전략 <span style="color:var(--sage);">— Inzent</span></div>
-        <div class="tl-sub"><span class="tl-sub-pointer">•</span> 실시간 이벤트 기반 성공적인 차세대 아키텍처 <span style="color:var(--sage);">— Solace</span></div>
-        <div class="tl-sub"><span class="tl-sub-pointer">•</span> 금융투자업권에서 에임투지의 스토리텔링 <span style="color:var(--sage);">— Aim To G</span></div>
+        <div class="title">세미나 <span class="tl-room">(세미나실 4~5호실)</span></div>
+        <div class="tl-sub">혁신과 안정성, eXperDB TCO 전략 <span class="tl-sub-co">— Inzent</span></div>
+        <div class="tl-sub">실시간 이벤트 기반 성공적인 차세대 아키텍처 <span class="tl-sub-co">— Solace</span></div>
+        <div class="tl-sub">금융투자업권에서 에임투지의 스토리텔링 <span class="tl-sub-co">— Aim To G</span></div>
       </div>
     </div>
     <div class="tl-row" data-reveal data-delay="4">
