@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -459,7 +452,7 @@
   .timeline::before {
     content: '';
     position: absolute;
-    left: var(--tl-line-x, 148px);
+    left: calc(var(--tl-w, 148px) + 5px);
     top: 8px; bottom: 8px;
     width: 1px;
     background: linear-gradient(to bottom, var(--moss) 0%, var(--sage) 65%, transparent 100%);
@@ -593,13 +586,13 @@
   @media (max-width: 480px) {
     :root { --sec-py: 48px; --sec-px: 18px; }
     .hero { padding-bottom: clamp(80px,18vw,110px); }
-    .timeline { --tl-w: 98px; --tl-line-x: 98px; }
+    .timeline { --tl-w: 98px; }
     .tl-time  { width: 98px; padding-right: 12px; font-size: 13px; }
     .dir-grid { grid-template-columns: 1fr; }
     .invitation-body { font-size: 14px; }
   }
   @media (max-width: 360px) {
-    .timeline { --tl-w: 84px; --tl-line-x: 84px; }
+    .timeline { --tl-w: 84px; }
     .tl-time  { width: 84px; font-size: 11.5px; padding-right: 8px; }
   }
   @media (prefers-reduced-motion: reduce) {
